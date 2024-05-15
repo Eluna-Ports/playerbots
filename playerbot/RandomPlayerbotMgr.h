@@ -157,7 +157,7 @@ public:
 	protected:
 	    virtual void OnBotLoginInternal(Player * const bot);
 
-    private:
+    public:
         //pid values are set in constructor
         botPID pid = botPID(1, 50, -50, 0, 0, 0);
         float activityMod = 0.25;
