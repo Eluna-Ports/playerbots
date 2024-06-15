@@ -19,16 +19,17 @@ jobs:
 
     strategy:
       matrix:
-        version: [classic, tbc]
+        version: [Classic, TBC]
         include:
           - os: windows-2022
-            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON"
+            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON -DBUILD_ELUNA=ON -DBUILD_SOLOCRAFT=ON"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository_owner}}/mangos-${{matrix.version}}
+          repository: ${{github.repository_owner}}/Eluna-CMaNGOS-${{matrix.version}}
+          submodules: true
           ref: master
           path: ${{env.REPO_DIR}}
 
@@ -77,7 +78,7 @@ jobs:
 
   notify:
     name: Send Notification to Discord on Failure
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: none
     needs: # make sure the notification is sent AFTER the jobs you want included have completed
