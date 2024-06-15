@@ -22,16 +22,17 @@ jobs:
 
     strategy:
       matrix:
-        version: [classic, tbc]
+        version: [Classic, TBC]
         include:
           - os: macos-12
-            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON"
+            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON -DBUILD_ELUNA=ON -DBUILD_SOLOCRAFT=ON"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository_owner}}/mangos-${{matrix.version}}
+          repository: ${{github.repository_owner}}/Eluna-CMaNGOS-${{matrix.version}}
+          submodules: true
           ref: master
           path: ${{env.REPO_DIR}}
 
