@@ -21,18 +21,19 @@ jobs:
 
     strategy:
       matrix:
-        version: [classic, tbc, wotlk]
+        version: [Classic, TBC, WotLK]
         include:
           - os: ubuntu-22.04
-            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON"
+            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON -DBUILD_ELUNA=ON"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository_owner}}/mangos-${{matrix.version}}
+          repository: ${{github.repository_owner}}/Eluna-CMaNGOS-${{matrix.version}}
           ref: master
           path: ${{env.REPO_DIR}}
+          submodules: true
 
       - name: Create Build Environment
         run: |

@@ -20,16 +20,16 @@ jobs:
 
     strategy:
       matrix:
-        version: [classic, tbc, wotlk]
+        version: [Classic, TBC, WotLK]
         include:
           - os: macos-12
-            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON"
+            EXTRA_BUILD: "-DBUILD_PLAYERBOTS=ON -DBUILD_ELUNA=ON"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository_owner}}/mangos-${{matrix.version}}
+          repository: ${{github.repository_owner}}/Eluna-CMaNGOS-${{matrix.version}}
           ref: master
           path: ${{env.REPO_DIR}}
           submodules: true
@@ -40,7 +40,7 @@ jobs:
           brew install openssl
           brew install boost
           echo "OPENSSL_ROOT_DIR=$(brew --prefix --installed openssl)" >> $GITHUB_ENV
-          echo "MYSQL_HOME=$(brew --prefix --installed mysql-client@8.4)" >> $GITHUB_ENV      
+          echo "MYSQL_HOME=$(brew --prefix --installed mysql-client@8.4)" >> $GITHUB_ENV
       - name: Configure
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
